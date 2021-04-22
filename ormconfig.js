@@ -7,13 +7,13 @@ const connection = {
     password: "nlw_05_next_level",
     database: "nlw_05_production",
     migrations: [
-        "./src/database/migrations/*.ts"
+        "./src/domain/database/migrations/*.ts"
     ],
     entities: [
-        "./src/database/models/*.ts"
+        "./src/domain/database/models/*.ts"
     ],
     cli: {
-        migrationsDir: "./src/database/migrations"
+        migrationsDir: "./src/domain/database/migrations"
     }
     
 };

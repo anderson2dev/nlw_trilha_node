@@ -8,7 +8,7 @@ class SettingsController {
         const {chat, username} = req.body;
         try {
             await SettingsServices.create({chat, username});
-            return res
+            return res.sendStatus(200);
         } catch(error) {
             console.trace(error);
             return res.status(500).json({reason: error});
@@ -17,7 +17,7 @@ class SettingsController {
 
     async index(req: Request, res: Response) {
         try {
-            const result = SettingsServices.index();
+            const result = await SettingsServices.index();
             if (result === undefined) 
                 return res.sendStatus(404);
             return res.status(200).json(result);
