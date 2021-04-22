@@ -1,0 +1,6 @@
+FROM node
+
+COPY . ./next_level_week
+RUN yarn import
+CMD [ "yarn", "dev" ]
+EXPOSE 8080

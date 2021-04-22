@@ -1,0 +1,24 @@
+{
+  "name": "trilha_node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev_db": "docker-compose up -d dev_db",
+    "dev": "yarn ts-node-dev src/server.ts --trace-warnings",
+    "migrations:create": "yarn ts-node-dev --transpile-only ./node_modules/typeorm/cli.js migration:create -n",
+    "migrations:revert": "yarn ts-node-dev --transpile-only ./node_modules/typeorm/cli.js migration:revert",
+    "migrations:run": "yarn ts-node-dev --transpile-only ./node_modules/typeorm/cli.js migration:run"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.11",
+    "express": "^4.17.1",
+    "pg": "^8.6.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.32",
+    "typescript": "^4.2.4"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.1.6"
+  }
+}

@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+
+    node_production_env:
+        container_name: "node_production_env"
+        image: "node"
+        links:
+            - production_db
+        volumes: 
+            - /api/:/next_level_week
+        environment: 
+            - NODE_ENV=production
+
+    node_dev_env:
+        container_name: "node_dev_container"
+        image: "node"
+        links: 
+            - dev_db
+        volumes: 
+            - /next_level_week/:./api/*
+        working_dir: 
+            "/next_level_week/"
+        environment: 
+            - NODE_ENV=dev
+        command: 
+            "yarn run dev"
+
+    dev_db:
+        container_name: dev_db
+        image: postgres
+        environment: 
+            - POSTGRES_USER=nlw_05
+            - POSTGRES_PASSWORD=nlw_05_next_level
+            - POSTGRES_DB=nlw_05_dev
+        ports: 
+            - "6000:5432"
+
+    production_db:
+        container_name: production_db
+        image: postgres
+        environment: 
+            - POSTGRES_USER=nlw_05
+            - POSTGRES_PASSWORD=nlw_05_next_level
+            - POSTGRES_DB=nlw_05_production
+        ports: 
+            - "6000:5432"
