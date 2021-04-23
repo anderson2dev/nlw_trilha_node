@@ -5,7 +5,7 @@ interface ISettingsRequest {
 
 interface ISettingsResponse {
     id: String ;
-    chat: Boolean | undefined;
+    chat?: Boolean | undefined;
     username: String;
     created_at: Date;
     updated_at: Date;

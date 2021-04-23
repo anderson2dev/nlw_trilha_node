@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import SettingsServices from '../services/SettingsServices';
+import SettingsServices from '../../services/SettingsServices';
 
 class SettingsController {
 
@@ -11,7 +11,7 @@ class SettingsController {
             return res.sendStatus(200);
         } catch(error) {
             console.trace(error);
-            return res.status(500).json({reason: error});
+            return res.status(409).json({reason: error});
         }
     }
 
@@ -24,8 +24,20 @@ class SettingsController {
             
         } catch(e) {
             console.trace(e);
+            return res.status(500).json({"reason": e})
         }
-        return res.sendStatus(500);
+    }
+
+    static async update(req: Request, res: Response) {
+        try {
+            const { old_user_name, chat, username } = req.body;
+            const result = await SettingsServices.update(old_user_name, { username, chat });
+            return res.status(200).json(result); 
+        } catch(e) {
+            console.trace(e);
+            return res.status(500).json({"reason": e})
+        }
+     
     }
 }
 
