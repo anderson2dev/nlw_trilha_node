@@ -1,9 +1,16 @@
-import express from 'express';
-import router from './routes';
-import "./domain/database";
-const server  = express();
-server.use(express.json());
-server.use(router);
+import {http} from './http';
+import './websocket/Client';
+import './websocket/Admin';
+
 const port = process.env.PORT || 8080;
 const environment = process.env.NODE_ENV || 'production';
-server.listen(port, () => console.log(`Server is running on ${port} at ${environment}`));
+// Creating an server with express
+http.listen(port, () => console.log(
+        `Server is running on ${port} at ${environment}`
+));
+
+//Attaching him to the io
+
+
+
+
